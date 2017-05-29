@@ -1,19 +1,11 @@
 # Mastermind
 
-**TODO: Add description**
+Mastermind is a code braking game. One player creates a "code" of four colored pegs. The other player then guesses the code. Hints are given when the player guesses the correct colors in the wrong order or when the guess is correct.
 
-## Installation
+When the code breaker guesses the exact order of the code, the game is over.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `mastermind` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [{:mastermind, "~> 0.1.0"}]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/mastermind](https://hexdocs.pm/mastermind).
+**TODO**
+1. Create the code maker
+1. Build the UI for guessing
+1. Implement limit on the number of turns
 
