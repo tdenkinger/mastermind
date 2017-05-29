@@ -6,7 +6,7 @@ Hints are given to the code breaker by the code maker. Black pegs indicate there
 
 When the code breaker guesses the exact order of the code, the game is over.
 
-Peg colors: green, red, blue, yello, purple, orange
+Peg colors: green, red, blue, yellow, purple, orange
 
 Hint pegs:
     black: correct color in the correct position
@@ -14,7 +14,16 @@ Hint pegs:
 
 For more: http://www.wikihow.com/Play-Mastermind
 
-**TODO**
-1. Create the code maker
-1. Build the shell for running a game
+## To play
 
+Run `iex -S mix`
+
+> Mastermind.start
+
+Enter four colors for your guess
+
+
+**TODO**
+1. Set turn limit
+1. Better iex UI
+1. escript so iex isn't necessary
