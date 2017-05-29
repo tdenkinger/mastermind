@@ -1,4 +1,4 @@
-defmodule Mastermind do
+defmodule Mastermind.GuessEvaluator do
   @moduledoc """
   Create a "code" using 4 colored pegs
   Player guesses the colors and positions
