@@ -12,7 +12,7 @@ defmodule Mastermind do
     case Mastermind.GuessEvaluator.guess(%{guess: guess, code: code}) do
       {:ok, "solved"} -> "Winner"
       {:ok,     hint} -> run(%{code: code, turns: [%{hint: hint, guess: guess} | turns]})
-                    _ -> "Error"
+      {:error,   msg} -> "Error: #{msg}"
     end
   end
 
@@ -26,6 +26,7 @@ defmodule Mastermind do
     Enum.join(turn.guess, " ") <> " | " <> Enum.join(turn.hint, "/")
     |> IO.puts
   end
+
   def get_player_guess do
     IO.gets("Your guess: ")
     |> String.split
