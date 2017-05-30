@@ -17,12 +17,15 @@ defmodule Mastermind.GuessEvaluator do
   Otherwise returns the hint pegs, shuffled, as a list of atoms
   """
   def guess(%{guess: guess, code: code}) when guess == code do
-    [:solved]
+    {:ok, "solved"}
   end
 
   def guess(%{guess: guess, code: code}) do
+    hints =
     set_hints(guess, code)
     |> Enum.shuffle
+
+    {:ok, hints}
   end
 
   defp set_hints(guess, code) do
