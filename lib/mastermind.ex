@@ -1,28 +1,42 @@
 defmodule Mastermind do
-  def start do
+  alias Mastermind.GuessEvaluator
+
+  def start(game_length \\ 10) do
     code = Mastermind.CreateCode.new
-    IO.inspect code
-    run(%{code: code, turns: []})
+    run(%{code: code, turns: []}, game_length)
   end
 
-  def run(%{code: code, turns: turns}) do
+  def run(%{code: code, turns: turns}, game_length) do
+
     display_prior_turns(turns)
+    check_game_over(turns, code, game_length)
+
     guess = get_player_guess()
 
-    case Mastermind.GuessEvaluator.guess(%{guess: guess, code: code}) do
+    case GuessEvaluator.guess(%{guess: guess, code: code}) do
       {:ok, "solved"} -> "Winner"
-      {:ok,     hint} -> run(%{code: code, turns: [%{hint: hint, guess: guess} | turns]})
+      {:ok,     hint} -> run(%{code: code, turns: [%{hint: hint, guess: guess} | turns]}, game_length)
       {:error,   msg} -> "Error: #{msg}"
+    end
+  end
+
+  def check_game_over(turns, code, game_length) do
+    if Enum.count(turns) == game_length do
+      IO.puts "========================"
+      IO.puts "Game Over. The code was:"
+      Enum.join(code, " ") |> IO.puts
+
+      Process.exit(self(), :normal)
     end
   end
 
   def display_prior_turns(turns) do
     turns
     |> Enum.reverse
-    |> Enum.each(fn(turn) -> print_prior_guess(turn) end)
+    |> Enum.each(fn(turn) -> print_prior_turn(turn) end)
   end
 
-  def print_prior_guess(turn) do
+  def print_prior_turn(turn) do
     Enum.join(turn.guess, " ") <> " | " <> Enum.join(turn.hint, "/")
     |> IO.puts
   end
