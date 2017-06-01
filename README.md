@@ -24,6 +24,5 @@ Enter four colors for your guess
 
 
 **TODO**
-1. Set turn limit
-1. Better iex UI
+1. Validate bad input and output error messages
 1. escript so iex isn't necessary
