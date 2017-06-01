@@ -26,3 +26,4 @@ Enter four colors for your guess
 **TODO**
 1. Validate bad input and output error messages
 1. escript so iex isn't necessary
+1. Create a new branch implementing the game using GenServer
