@@ -42,16 +42,27 @@ defmodule Mastermind.GuessEvaluator do
     Enum.zip(guess, code)
     |> Enum.filter(fn(pegs) -> elem(pegs, 0) != elem(pegs, 1) end)
     |> Enum.unzip
-    |> get_white_hints
+    |> set_white_hints
   end
 
-  defp get_white_hints({guess, code}) do
-    guess
-    |> Enum.reduce([], fn(peg, hints) ->
-      case Enum.member?(code, peg) do
-        :true -> [:white | hints]
-            _ -> hints
-      end
-    end)
+  def set_white_hints({guess, code}) do
+    get_white_hints(%{guess: guess, code: code, match: 0})
+  end
+
+  def get_white_hints(%{guess: [], code: _, match: match_count}) do
+    List.duplicate(:white, match_count)
+  end
+
+  def get_white_hints(%{guess: [h|t], code: code, match: match_count}) do
+    case Enum.member?(code, h) do
+      :true -> increment_match_count(code, h, t, match_count)
+               |> get_white_hints
+      _ -> get_white_hints(%{guess: t, code: code, match: match_count})
+    end
+  end
+
+  def increment_match_count(code, guess, guesses, match_count) do
+    code = List.delete(code, guess)
+    %{guess: guesses, code: code, match: match_count + 1}
   end
 end
