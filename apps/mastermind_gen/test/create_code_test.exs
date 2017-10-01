@@ -1,4 +1,4 @@
-defmodule CreateCodeGen do
+defmodule CreateCodeGenTest do
   use ExUnit.Case
   doctest MastermindGen.CreateCode
 
