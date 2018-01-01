@@ -9,6 +9,7 @@ When the code breaker guesses the exact order of the code, the game is over.
 Peg colors: green, red, blue, yellow, purple, orange
 
 Hint pegs:
+
     black: correct color in the correct position
     white: correct color in the incorrect position
 
@@ -20,10 +21,9 @@ Run `iex -S mix`
 
 > Mastermind.start
 
-Enter four colors for your guess
-
+Enter four colors for your guess.
 
 **TODO**
-1. Validate bad input and output error messages
+
+1. Validate bad input and give meaningful error messages
 1. escript so iex isn't necessary
-1. Create a new branch implementing the game using GenServer
